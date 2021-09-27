@@ -59,14 +59,14 @@ class OneHeader extends StatelessWidget {
                       ? 500
                       : MediaQuery.of(context).size.width / 2,
                   child: OneHeaderL()),
-              Container(
-                  width: MediaQuery.of(context).size.width > 1000
-                      ? 500
-                      : MediaQuery.of(context).size.width / 2,
-                  child: OneHeaderR(
-                    assetPath: "header_screenshot.png",
-                    fixedSize: true,
-                  ))
+              // Container(
+              //     width: MediaQuery.of(context).size.width > 1000
+              //         ? 500
+              //         : MediaQuery.of(context).size.width / 2,
+              //     child: OneHeaderR(
+              //       assetPath: "header_screenshot.png",
+              //       fixedSize: true,
+              //     ))
             ],
           ),
         ),
@@ -259,7 +259,7 @@ class Textimonial extends StatefulWidget {
 }
 
 class _TextimonialState extends State<Textimonial> {
-  List<TestimonialModel> myAppTestimonials = new List<TestimonialModel>();
+  List<TestimonialModel> myAppTestimonials = [];
 
   @override
   void initState() {
@@ -509,7 +509,7 @@ class AppFeaturesList extends StatefulWidget {
 }
 
 class _AppFeaturesListState extends State<AppFeaturesList> {
-  List<AppFeatureModel> myAppFeatures = new List<AppFeatureModel>();
+  List<AppFeatureModel> myAppFeatures = [];
 
   @override
   void initState() {
@@ -726,10 +726,10 @@ class FeatureSlider extends StatefulWidget {
 }
 
 class _FeatureSliderState extends State<FeatureSlider> {
-  List<FeatureTileModel> features1 = new List<FeatureTileModel>();
-  List<FeatureTileModel> features2 = new List<FeatureTileModel>();
+  List<FeatureTileModel> features1 = [];
+  List<FeatureTileModel> features2 = [];
 
-  List<String?> screenshots = new List<String?>();
+  List<String?> screenshots = [];
 
   @override
   void initState() {
