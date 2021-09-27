@@ -20,15 +20,15 @@ class _LandingPageState extends State<LandingPage> {
         child: Container(
             child: Column(
           children: <Widget>[
-              OneHeader(),
-              SecondHeader(),
-              AppFeaturesList(),
-              FeatureSlider(),
-              WatchVideo(),
-              Textimonial(),
-              Bottom(),
-              BelowBottom(),
-              Footer()
+            OneHeader(),
+            // SecondHeader(),
+            // AppFeaturesList(),
+            // FeatureSlider(),
+            // WatchVideo(),
+            // Textimonial(),
+            // Bottom(),
+            // BelowBottom(),
+            Footer()
           ],
         )),
       ),
@@ -87,7 +87,6 @@ class OneHeader extends StatelessWidget {
 }
 
 class OneHeaderL extends StatelessWidget {
-
   launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -130,7 +129,9 @@ class OneHeaderL extends StatelessWidget {
             height: 25,
           ),
           Row(
-            mainAxisAlignment: MediaQuery.of(context).size.width > 700 ? MainAxisAlignment.start : MainAxisAlignment.center,
+            mainAxisAlignment: MediaQuery.of(context).size.width > 700
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.center,
             children: <Widget>[
               GestureDetector(
                   onTap: () {
@@ -159,15 +160,15 @@ class OneHeaderL extends StatelessWidget {
 }
 
 class OneHeaderR extends StatelessWidget {
-  String assetPath;
-  final bool fixedSize;
+  String? assetPath;
+  final bool? fixedSize;
 
-  OneHeaderR({@required this.assetPath, this.fixedSize});
+  OneHeaderR({required this.assetPath, this.fixedSize});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Image.asset("assets/" + assetPath),
+      child: Image.asset("assets/" + assetPath!),
     );
   }
 }
@@ -181,8 +182,14 @@ class SecondHeader extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: <Widget>[
-          Image.asset("assets/test.png",width: 40,height: 40,),
-          SizedBox(height: 20,),
+          Image.asset(
+            "assets/test.png",
+            width: 40,
+            height: 40,
+          ),
+          SizedBox(
+            height: 20,
+          ),
           Text(
             maintitle,
             textAlign: TextAlign.center,
@@ -204,7 +211,6 @@ class SecondHeader extends StatelessWidget {
 }
 
 class WatchVideo extends StatelessWidget {
-
   launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -220,7 +226,7 @@ class WatchVideo extends StatelessWidget {
       color: Colors.black87,
       width: MediaQuery.of(context).size.width,
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           launchURL(youtubeVideoUrl);
         },
         child: Column(
@@ -228,7 +234,9 @@ class WatchVideo extends StatelessWidget {
             Text(
               "Watch the video",
               style: TextStyle(
-                  color: Colors.white, fontSize: 30, fontWeight: FontWeight.w400),
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w400),
             ),
             SizedBox(
               height: 30,
@@ -296,8 +304,8 @@ class _TextimonialState extends State<Textimonial> {
 }
 
 class TestimonialTile extends StatelessWidget {
-  String description, assetPathName, name, designation;
-  double rating;
+  String? description, assetPathName, name, designation;
+  double? rating;
 
   TestimonialTile(
       {this.description,
@@ -316,7 +324,7 @@ class TestimonialTile extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Text(
-            description,
+            description!,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
@@ -344,7 +352,7 @@ class TestimonialTile extends StatelessWidget {
             height: 8,
           ),
           Text(
-            name,
+            name!,
             style: TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.w300),
           ),
@@ -352,7 +360,7 @@ class TestimonialTile extends StatelessWidget {
             height: 4,
           ),
           Text(
-            designation,
+            designation!,
             style: TextStyle(
                 color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300),
           )
@@ -530,8 +538,8 @@ class _AppFeaturesListState extends State<AppFeaturesList> {
 }
 
 class AppFeatureTile extends StatelessWidget {
-  String assetPath, title, description;
-  int tileIndex;
+  String? assetPath, title, description;
+  int? tileIndex;
 
   AppFeatureTile(
       {this.assetPath, this.title, this.description, this.tileIndex});
@@ -539,94 +547,99 @@ class AppFeatureTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:  MediaQuery.of(context).size.width > 700 ? 700 : null,
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(
-          vertical: 30,
-          horizontal: MediaQuery.of(context).size.width > 800 ? 40 : 20),
-      decoration: tileIndex % 2 == 0
-          ? BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [const Color(0xffFEB692), const Color(0xffEA5455)]))
-          : null,
-      child: tileIndex % 2 == 0 ? Container(
-        child: MediaQuery.of(context).size.width < 700 ? Column(
-          children: <Widget>[
-            OneHeaderR(
-              assetPath: assetPath,
-              fixedSize: false,
-            ),
-            FeatureTileText(
-              title: title,
-              description: description,
-              myIndex: tileIndex,
-            )
-          ],
-        ): Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              child: OneHeaderR(
-                assetPath: assetPath,
-                fixedSize: true,
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width > 1000
-                  ? 500
-                  : MediaQuery.of(context).size.width / 2,
-              child: FeatureTileText(
-                title: title,
-                description: description,
-                myIndex: tileIndex,
-              ),
-            )
-          ],
-        ),
-      ) : Container(
-        child: MediaQuery.of(context).size.width < 700 ? Column(
-          children: <Widget>[
-            OneHeaderR(
-              assetPath: assetPath,
-              fixedSize: false,
-            ),
-            FeatureTileText(
-              title: title,
-              description: description,
-              myIndex: tileIndex,
-            )
-          ],
-        ): Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width > 1000
-                  ? 500
-                  : MediaQuery.of(context).size.width / 2,
-              child: FeatureTileText(
-                title: title,
-                description: description,
-                myIndex: tileIndex,
-              ),
-            ),
-            Container(
-              child: OneHeaderR(
-                assetPath: assetPath,
-                fixedSize: true,
-              ),
-            ),
-          ],
-        ),
-      )
-    );
+        height: MediaQuery.of(context).size.width > 700 ? 700 : null,
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(
+            vertical: 30,
+            horizontal: MediaQuery.of(context).size.width > 800 ? 40 : 20),
+        decoration: tileIndex! % 2 == 0
+            ? BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [const Color(0xffFEB692), const Color(0xffEA5455)]))
+            : null,
+        child: tileIndex! % 2 == 0
+            ? Container(
+                child: MediaQuery.of(context).size.width < 700
+                    ? Column(
+                        children: <Widget>[
+                          OneHeaderR(
+                            assetPath: assetPath,
+                            fixedSize: false,
+                          ),
+                          FeatureTileText(
+                            title: title,
+                            description: description,
+                            myIndex: tileIndex,
+                          )
+                        ],
+                      )
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            child: OneHeaderR(
+                              assetPath: assetPath,
+                              fixedSize: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width > 1000
+                                ? 500
+                                : MediaQuery.of(context).size.width / 2,
+                            child: FeatureTileText(
+                              title: title,
+                              description: description,
+                              myIndex: tileIndex,
+                            ),
+                          )
+                        ],
+                      ),
+              )
+            : Container(
+                child: MediaQuery.of(context).size.width < 700
+                    ? Column(
+                        children: <Widget>[
+                          OneHeaderR(
+                            assetPath: assetPath,
+                            fixedSize: false,
+                          ),
+                          FeatureTileText(
+                            title: title,
+                            description: description,
+                            myIndex: tileIndex,
+                          )
+                        ],
+                      )
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width > 1000
+                                ? 500
+                                : MediaQuery.of(context).size.width / 2,
+                            child: FeatureTileText(
+                              title: title,
+                              description: description,
+                              myIndex: tileIndex,
+                            ),
+                          ),
+                          Container(
+                            child: OneHeaderR(
+                              assetPath: assetPath,
+                              fixedSize: true,
+                            ),
+                          ),
+                        ],
+                      ),
+              ));
   }
 }
 
 class FeatureTileText extends StatelessWidget {
-  String title, description;
-  int myIndex;
+  String? title, description;
+  int? myIndex;
 
   FeatureTileText({this.title, this.description, this.myIndex});
 
@@ -650,12 +663,12 @@ class FeatureTileText extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            title,
+            title!,
             textAlign: MediaQuery.of(context).size.width > 700
                 ? null
                 : TextAlign.center,
             style: TextStyle(
-              color: myIndex % 2 == 0 ? Colors.white : Colors.black87,
+              color: myIndex! % 2 == 0 ? Colors.white : Colors.black87,
               fontSize: 35,
               fontWeight: FontWeight.w500,
             ),
@@ -664,12 +677,12 @@ class FeatureTileText extends StatelessWidget {
             height: 16,
           ),
           Text(
-            description,
+            description!,
             textAlign: MediaQuery.of(context).size.width > 700
                 ? null
                 : TextAlign.center,
             style: TextStyle(
-                color: myIndex % 2 == 0 ? Colors.white : Colors.black87,
+                color: myIndex! % 2 == 0 ? Colors.white : Colors.black87,
                 fontSize: 20,
                 fontWeight: FontWeight.w300),
           ),
@@ -677,8 +690,9 @@ class FeatureTileText extends StatelessWidget {
             height: 16,
           ),
           Row(
-            mainAxisAlignment: MediaQuery.of(context).size.width > 700 ?
-            MainAxisAlignment.start: MainAxisAlignment.center,
+            mainAxisAlignment: MediaQuery.of(context).size.width > 700
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.center,
             children: <Widget>[
               GestureDetector(
                   onTap: () {
@@ -712,12 +726,10 @@ class FeatureSlider extends StatefulWidget {
 }
 
 class _FeatureSliderState extends State<FeatureSlider> {
-
   List<FeatureTileModel> features1 = new List<FeatureTileModel>();
   List<FeatureTileModel> features2 = new List<FeatureTileModel>();
 
-  List<String> screenshots = new List<String>();
-
+  List<String?> screenshots = new List<String?>();
 
   @override
   void initState() {
@@ -726,13 +738,12 @@ class _FeatureSliderState extends State<FeatureSlider> {
     features1 = getFeaturesTiles1();
     features2 = getFeaturesTiles2();
 
-    for(int i = 0;i< features1.length ; i++){
+    for (int i = 0; i < features1.length; i++) {
       screenshots.add(features1[i].getImagePath());
     }
-    for(int i = 0;i< features2.length ; i++){
+    for (int i = 0; i < features2.length; i++) {
       screenshots.add(features2[i].getImagePath());
     }
-
   }
 
   @override
@@ -741,7 +752,9 @@ class _FeatureSliderState extends State<FeatureSlider> {
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           Text(
             "Feature Rich. No bloat.",
             textAlign: TextAlign.center,
@@ -766,45 +779,45 @@ class _FeatureSliderState extends State<FeatureSlider> {
               largeScreen: Row(
                 children: <Widget>[
                   Container(
-                    width: MediaQuery.of(context).size.width/3,
+                    width: MediaQuery.of(context).size.width / 3,
                     child: ListView.builder(
-                      itemCount: features1.length,
+                        itemCount: features1.length,
                         shrinkWrap: true,
                         physics: ClampingScrollPhysics(),
-                        itemBuilder: (context, index){
-                        return FeaturesTile(
-                          title: features1[index].getTitle(),
-                          description: features1[index].getDesc(),
-                        );
+                        itemBuilder: (context, index) {
+                          return FeaturesTile(
+                            title: features1[index].getTitle(),
+                            description: features1[index].getDesc(),
+                          );
                         }),
                   ),
                   Container(
                     height: 650,
-                    width:  MediaQuery.of(context).size.width/3,
+                    width: MediaQuery.of(context).size.width / 3,
                     child: ListView.builder(
-                      itemCount: screenshots.length,
+                        itemCount: screenshots.length,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index){
-                        return Container(
-                            margin: EdgeInsets.symmetric(horizontal: 40),
-                            child: Image.asset("assets/"+screenshots[index]));
+                        itemBuilder: (context, index) {
+                          return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 40),
+                              child:
+                                  Image.asset("assets/" + screenshots[index]!));
                         }),
                   ),
                   Container(
-                  width: MediaQuery.of(context).size.width/3,
+                    width: MediaQuery.of(context).size.width / 3,
                     child: ListView.builder(
                         itemCount: features2.length,
                         physics: ClampingScrollPhysics(),
                         shrinkWrap: true,
-                        itemBuilder: (context, index){
+                        itemBuilder: (context, index) {
                           return FeaturesTile(
                             title: features2[index].getTitle(),
                             description: features2[index].getDesc(),
                           );
                         }),
                   ),
-
                 ],
               ),
               smallScreen: Column(
@@ -814,7 +827,7 @@ class _FeatureSliderState extends State<FeatureSlider> {
                         itemCount: features1.length,
                         shrinkWrap: true,
                         physics: ClampingScrollPhysics(),
-                        itemBuilder: (context, index){
+                        itemBuilder: (context, index) {
                           return FeaturesTile(
                             title: features1[index].getTitle(),
                             description: features1[index].getDesc(),
@@ -825,11 +838,11 @@ class _FeatureSliderState extends State<FeatureSlider> {
                     height: 650,
                     width: 350,
                     child: ListView.builder(
-                      shrinkWrap: true,
+                        shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: screenshots.length,
-                        itemBuilder: (context, index){
-                          return Image.asset("assets/"+screenshots[index]);
+                        itemBuilder: (context, index) {
+                          return Image.asset("assets/" + screenshots[index]!);
                         }),
                   ),
                   Container(
@@ -837,7 +850,7 @@ class _FeatureSliderState extends State<FeatureSlider> {
                         itemCount: features2.length,
                         physics: ClampingScrollPhysics(),
                         shrinkWrap: true,
-                        itemBuilder: (context, index){
+                        itemBuilder: (context, index) {
                           return FeaturesTile(
                             title: features2[index].getTitle(),
                             description: features2[index].getDesc(),
@@ -855,7 +868,7 @@ class _FeatureSliderState extends State<FeatureSlider> {
 }
 
 class FeaturesTile extends StatelessWidget {
-  String title, description;
+  String? title, description;
 
   FeaturesTile({this.title, this.description});
 
@@ -866,10 +879,16 @@ class FeaturesTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         children: <Widget>[
-          Image.asset("assets/test.png",width: 40,height: 40,),
-          SizedBox(height: 16,),
+          Image.asset(
+            "assets/test.png",
+            width: 40,
+            height: 40,
+          ),
+          SizedBox(
+            height: 16,
+          ),
           Text(
-            title,
+            title!,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 20,
@@ -880,7 +899,7 @@ class FeaturesTile extends StatelessWidget {
             height: 8,
           ),
           Text(
-            description,
+            description!,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
           ),
@@ -903,18 +922,19 @@ class Header extends StatelessWidget {
       decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [const Color(0xffFEB692), const Color(0xffEA5455)])),
-      child: Image.asset("assets/logo.png",width: 100,height: 100,),
+      child: Image.asset(
+        "assets/logo.png",
+        width: 100,
+        height: 100,
+      ),
     );
   }
 }
 
-
-
 class Footer extends StatelessWidget {
-
   Color textColor = Colors.white;
 
- /* textColor = gradients[randomNum].getBottomColor().computeLuminance() > 0.5 ?
+  /* textColor = gradients[randomNum].getBottomColor().computeLuminance() > 0.5 ?
   Colors.black54 : Colors.white70;*/
 
   _launchURL(String url) async {
@@ -927,7 +947,7 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       padding: EdgeInsets.symmetric(vertical: 40),
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -937,7 +957,7 @@ class Footer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           GestureDetector(
-            onTap: (){
+            onTap: () {
               _launchURL(aboutUsUrl);
             },
             child: Text(
@@ -945,13 +965,14 @@ class Footer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 13,
                   color: textColor,
-                  decoration: TextDecoration.underline
-              ),
+                  decoration: TextDecoration.underline),
             ),
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               _launchURL(PrivacypolicyUrl);
             },
             child: Text(
@@ -959,13 +980,14 @@ class Footer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 13,
                   color: textColor,
-                  decoration: TextDecoration.underline
-              ),
+                  decoration: TextDecoration.underline),
             ),
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               _launchURL(ContactUsUrl);
             },
             child: Text(
@@ -973,8 +995,7 @@ class Footer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 13,
                   color: textColor,
-                  decoration: TextDecoration.underline
-              ),
+                  decoration: TextDecoration.underline),
             ),
           ),
         ],
@@ -982,4 +1003,3 @@ class Footer extends StatelessWidget {
     );
   }
 }
-

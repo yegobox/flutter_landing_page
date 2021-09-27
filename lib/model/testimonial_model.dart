@@ -1,9 +1,9 @@
 class TestimonialModel {
-  String description;
-  String name;
-  String designation;
-  String imageAssetName;
-  double rating;
+  String? description;
+  String? name;
+  String? designation;
+  String? imageAssetName;
+  double? rating;
 
   TestimonialModel(
       {this.description, this.name, this.designation, this.imageAssetName,
@@ -29,23 +29,23 @@ class TestimonialModel {
     rating = getRating;
   }
 
-  String getDescription(){
+  String? getDescription(){
     return description;
   }
 
-  String getName(){
+  String? getName(){
     return name;
   }
 
-  String getDesignation(){
+  String? getDesignation(){
     return designation;
   }
 
-  String getImageAssetName(){
+  String? getImageAssetName(){
     return imageAssetName;
   }
 
-  double getRating(){
+  double? getRating(){
     return rating;
   }
 }

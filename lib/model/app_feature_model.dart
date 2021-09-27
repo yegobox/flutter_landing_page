@@ -1,8 +1,8 @@
 class AppFeatureModel{
 
-  String featureTitle;
-  String featureDescription;
-  String imagePath;
+  String? featureTitle;
+  String? featureDescription;
+  String? imagePath;
 
   AppFeatureModel({this.featureTitle,
   this.featureDescription,
@@ -20,15 +20,15 @@ class AppFeatureModel{
     imagePath = getImagePath;
   }
 
-  String getFeatureTitle(){
+  String? getFeatureTitle(){
     return featureTitle;
   }
 
-  String getFeatureDescription(){
+  String? getFeatureDescription(){
     return featureDescription;
   }
 
-  String getImagePath(){
+  String? getImagePath(){
     return imagePath;
   }
 

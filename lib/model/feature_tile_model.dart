@@ -1,8 +1,8 @@
 class FeatureTileModel{
 
-  String title;
-  String desc;
-  String imagePath;
+  String? title;
+  String? desc;
+  String? imagePath;
 
   FeatureTileModel({this.title,this.desc, this.imagePath});
 
@@ -18,15 +18,15 @@ class FeatureTileModel{
     imagePath = getImagePath;
   }
 
-  String getTitle(){
+  String? getTitle(){
     return title;
   }
 
-  String getDesc(){
+  String? getDesc(){
     return desc;
   }
 
-  String getImagePath(){
+  String? getImagePath(){
     return imagePath;
   }
 
